@@ -62,8 +62,6 @@ public class UrlRestController {
 	@PostMapping(value = "/create")
 	public ModelAndView createUrl(@RequestParam(required = true) String urlLarge,
 			@RequestParam(required = false) String alias) {
-		//tempo de criação total < 5ms
-		long startTime = System.currentTimeMillis();
 		StopWatch timer = new StopWatch();
 		timer.start();
 		Url url = new Url(alias, urlLarge);
@@ -73,9 +71,6 @@ public class UrlRestController {
 			return ((ViewBuilder) vb).createError001(alias);
 		}
 		timer.stop();
-		long stopTime = System.currentTimeMillis();
-	    long elapsedTime = stopTime - startTime;
-	    System.out.println("LEVOU = " + elapsedTime);
 		return ((ViewBuilder) vb).createView(url, timer.getTotalTimeMillis());
 
 	}

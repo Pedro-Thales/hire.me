@@ -39,11 +39,10 @@ public class UrlService {
 		Url url;
 		if (alias == null || alias.isEmpty()) {
 			url = new Url(urlLarge);
-			id = repository.count();
+			id = repository.count() + 1;
 			generateAlias(id);
 			url.setAlias(str.toString());
 			repository.save(url);
-
 		} else {
 			url = new Url(alias, urlLarge);
 			repository.save(url);
